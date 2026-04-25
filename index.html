@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Willems Ultimate Dashboard</title>
+    <title>Willems Ultimate Countdowns</title>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <style>
         :root {
-            --accent: #00d2ff;
-            --glass: rgba(255, 255, 255, 0.05);
-            --border: rgba(255, 255, 255, 0.1);
+            --bg-color: #050509;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
         }
 
         body {
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-            background: #050509;
-            background-image: radial-gradient(circle at top right, #1a1a2e, #050509);
+            font-family: 'Segoe UI', sans-serif;
+            background-color: var(--bg-color);
+            background-image: radial-gradient(circle at center, #111 0%, #000 100%);
             color: white;
             margin: 0;
             display: flex;
@@ -23,172 +23,251 @@
             align-items: center;
             min-height: 100vh;
             padding: 20px;
+            overflow-x: hidden;
         }
 
-        h1 { font-weight: 300; letter-spacing: 2px; margin-bottom: 30px; }
-
-        /* Bedieningspaneel */
         .controls {
-            background: var(--glass);
-            backdrop-filter: blur(15px);
-            border: 1px solid var(--border);
-            padding: 25px;
-            border-radius: 20px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            padding: 20px;
+            border-radius: 16px;
+            margin-bottom: 40px;
             display: flex;
-            gap: 15px;
+            gap: 10px;
             flex-wrap: wrap;
             justify-content: center;
-            width: 100%;
-            max-width: 800px;
-            margin-bottom: 50px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
         input, select {
-            background: rgba(0,0,0,0.4);
-            border: 1px solid #444;
-            color: white;
             padding: 12px;
-            border-radius: 10px;
-            font-size: 1rem;
-            outline: none;
+            border-radius: 8px;
+            border: 1px solid #333;
+            background: rgba(0,0,0,0.5);
+            color: white;
         }
-
-        input:focus { border-color: var(--accent); }
 
         .add-btn {
-            background: var(--accent);
-            color: black;
+            background: #fff;
+            color: #000;
             border: none;
-            padding: 12px 30px;
-            border-radius: 10px;
-            font-weight: bold;
+            padding: 12px 24px;
+            border-radius: 8px;
             cursor: pointer;
-            transition: 0.3s;
+            font-weight: bold;
+            transition: transform 0.2s;
         }
 
-        .add-btn:hover { transform: scale(1.05); background: white; }
+        .add-btn:hover { transform: scale(1.05); }
 
-        /* Klokken Kaarten */
         #clock-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
             gap: 25px;
             width: 100%;
             max-width: 1200px;
         }
 
         .clock-card {
-            background: var(--glass);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--border);
-            border-top: 4px solid var(--accent);
-            border-radius: 24px;
-            padding: 30px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 25px;
             position: relative;
-            animation: fadeIn 0.5s ease;
+            transition: all 0.3s ease;
         }
 
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        /* Thema Kleuren */
+        .glow-blue { border-top: 3px solid #00d2ff; }
+        .glow-red { border-top: 3px solid #ff4444; }
+        .glow-green { border-top: 3px solid #00ff88; }
+        .glow-gold { border-top: 3px solid #ffcc00; }
 
-        .card-header { display: flex; align-items: center; gap: 15px; margin-bottom: 25px; }
-        .emoji { font-size: 2rem; }
-        .title { font-size: 1.3rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+        /* Pulsatie bij bijna klaar */
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 68, 68, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(255, 68, 68, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 68, 68, 0); }
+        }
+        .urgent { animation: pulse 1.5s infinite; border-top-color: #ff4444 !important; }
 
-        .countdown { display: flex; justify-content: space-between; margin-bottom: 20px; }
-        .unit { text-align: center; }
-        .val { display: block; font-size: 2.2rem; font-weight: 800; color: var(--accent); font-family: monospace; }
-        .lab { font-size: 0.7rem; color: #888; text-transform: uppercase; }
+        .card-head { display: flex; align-items: center; gap: 10px; margin-bottom: 15px; }
+        .card-emoji { font-size: 1.5rem; }
+        .card-title { font-size: 1.2rem; font-weight: 300; letter-spacing: 1px; flex-grow: 1; }
 
-        .card-actions { position: absolute; top: 15px; right: 15px; display: flex; gap: 10px; }
-        .btn-small { background: none; border: none; cursor: pointer; font-size: 1.2rem; filter: grayscale(1); transition: 0.2s; }
-        .btn-small:hover { filter: grayscale(0); transform: scale(1.2); }
+        .time-display { display: flex; justify-content: space-between; margin-top: 15px; }
+        .time-unit { text-align: center; flex: 1; }
+        .digits { display: block; font-size: 2rem; font-weight: 800; font-family: monospace; }
+        
+        .label { font-size: 0.65rem; color: #666; text-transform: uppercase; margin-top: 5px; }
 
-        .footer-status {
-            text-align: center;
+        .actions {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .action-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+            filter: grayscale(1);
+            transition: 0.2s;
+        }
+
+        .action-btn:hover { filter: grayscale(0); transform: scale(1.2); }
+
+        .status-msg {
+            margin-top: 15px;
             font-size: 0.8rem;
-            color: #555;
-            border-top: 1px solid var(--border);
-            padding-top: 15px;
+            text-align: center;
             font-weight: bold;
         }
     </style>
 </head>
 <body>
 
-    <h1>WILLEMS DASHBOARD</h1>
+    <h1>Willems Dashboard</h1>
 
     <div class="controls">
-        <input type="text" id="eIn" placeholder="🚀" style="width: 50px; text-align: center;">
-        <input type="text" id="tIn" placeholder="Naam van gebeurtenis">
-        <input type="datetime-local" id="dIn">
-        <button class="add-btn" onclick="add()">TOEVOEGEN</button>
+        <input type="text" id="emojiInput" placeholder="🚀" style="width: 40px; text-align: center;">
+        <input type="text" id="titleInput" placeholder="Wat vieren we?">
+        <input type="datetime-local" id="dateInput">
+        <select id="colorInput">
+            <option value="blue">Blauw</option>
+            <option value="red">Rood</option>
+            <option value="green">Groen</option>
+            <option value="gold">Goud</option>
+        </select>
+        <button class="add-btn" onclick="addClock()">Toevoegen</button>
     </div>
 
     <div id="clock-grid"></div>
 
 <script>
-    let clocks = JSON.parse(localStorage.getItem('willem_v4')) || [];
+    let clocks = JSON.parse(localStorage.getItem('ultraClocks')) || [];
 
-    // Check voor gedeelde WhatsApp link
+    // URL link parser
     window.onload = () => {
         const p = new URLSearchParams(window.location.search);
         if (p.has('t')) {
-            const shared = {
+            clocks.push({
                 id: Date.now(),
-                e: p.get('e') || '📅',
-                t: decodeURIComponent(p.get('t')),
-                d: parseInt(p.get('d')),
+                emoji: p.get('e') || '📅',
+                title: decodeURIComponent(p.get('t')),
+                target: parseInt(p.get('d')),
+                color: p.get('c') || 'blue',
                 done: false
-            };
-            if (!clocks.find(c => c.d === shared.d && c.t === shared.t)) {
-                clocks.push(shared);
-                save();
-            }
+            });
+            save();
             window.history.replaceState({}, '', window.location.pathname);
+            render();
         }
-        render();
     };
 
-    function save() { localStorage.setItem('willem_v4', JSON.stringify(clocks)); }
+    function addClock() {
+        const title = document.getElementById('titleInput').value;
+        const date = document.getElementById('dateInput').value;
+        if (!title || !date) return;
 
-    function add() {
-        const t = document.getElementById('tIn').value;
-        const d = document.getElementById('dIn').value;
-        const e = document.getElementById('eIn').value || '📅';
-
-        if (!t || !d) return alert("Vul een naam en datum in!");
-
-        clocks.push({ id: Date.now(), e, t, d: new Date(d).getTime(), done: false });
+        clocks.push({
+            id: Date.now(),
+            emoji: document.getElementById('emojiInput').value || '📅',
+            title: title,
+            target: new Date(date).getTime(),
+            color: document.getElementById('colorInput').value,
+            done: false
+        });
         save(); render();
-        document.getElementById('tIn').value = '';
+        document.getElementById('titleInput').value = '';
     }
 
-    function del(id) {
+    function deleteClock(id) {
         clocks = clocks.filter(c => c.id !== id);
         save(); render();
     }
 
-    function share(id) {
+    function shareWA(id) {
         const c = clocks.find(x => x.id === id);
-        const url = `${window.location.origin}${window.location.pathname}?t=${encodeURIComponent(c.t)}&d=${c.d}&e=${encodeURIComponent(c.e)}`;
-        const text = `Willem deelt een klok met je: ${c.e} ${c.t}! Kijk live mee: ${url}`;
+        const url = `${window.location.href.split('?')[0]}?t=${encodeURIComponent(c.title)}&d=${c.target}&e=${encodeURIComponent(c.emoji)}&c=${c.color}`;
+        const text = `Check deze countdown van Willem: ${c.emoji} ${c.title}! Bekijk het live: ${url}`;
         window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
     }
 
+    function save() { localStorage.setItem('ultraClocks', JSON.stringify(clocks)); }
+
     function render() {
-        const g = document.getElementById('clock-grid');
-        g.innerHTML = '';
+        const grid = document.getElementById('clock-grid');
+        grid.innerHTML = '';
         clocks.forEach(c => {
-            g.innerHTML += `
-                <div class="clock-card" id="c-${c.id}">
-                    <div class="card-actions">
-                        <button class="btn-small" onclick="share(${c.id})">🟢</button>
-                        <button class="btn-small" onclick="del(${c.id})">❌</button>
+            grid.innerHTML += `
+                <div class="clock-card glow-${c.color}" id="card-${c.id}">
+                    <div class="actions">
+                        <button class="action-btn" onclick="shareWA(${c.id})">🟢</button>
+                        <button class="action-btn" onclick="deleteClock(${c.id})">❌</button>
                     </div>
-                    <div class="card-header">
-                        <span class="emoji">${c.e}</span>
-                        <span class="title">${c.t}</span>
+                    <div class="card-head">
+                        <span class="card-emoji">${c.emoji}</span>
+                        <span class="card-title">${c.title.toUpperCase()}</span>
                     </div>
-                    <div class="countdown">
-                        <div class="unit"><span class="val" id="days
+                    <div class="time-display">
+                        <div class="time-unit"><span class="digits" id="d-${c.id}">00</span><span class="label">Dagen</span></div>
+                        <div class="time-unit"><span class="digits" id="h-${c.id}">00</span><span class="label">Uren</span></div>
+                        <div class="time-unit"><span class="digits" id="m-${c.id}">00</span><span class="label">Min</span></div>
+                        <div class="time-unit"><span class="digits" id="s-${c.id}">00</span><span class="label">Sec</span></div>
+                    </div>
+                    <div class="status-msg" id="status-${c.id}"></div>
+                </div>
+            `;
+        });
+    }
+
+    function update() {
+        const now = new Date().getTime();
+        clocks.forEach(c => {
+            const diff = c.target - now;
+            const card = document.getElementById(`card-${c.id}`);
+            const status = document.getElementById(`status-${c.id}`);
+            if (!card) return;
+
+            // Confetti check
+            if (diff <= 0 && diff > -2000 && !c.done) {
+                confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
+                c.done = true;
+                save();
+            }
+
+            // Urgentie (laatste uur)
+            if (diff > 0 && diff < 3600000) card.classList.add('urgent');
+            else card.classList.remove('urgent');
+
+            const absDiff = Math.abs(diff);
+            const d = Math.floor(absDiff / 86400000);
+            const h = Math.floor((absDiff % 86400000) / 3600000);
+            const m = Math.floor((absDiff % 3600000) / 60000);
+            const s = Math.floor((absDiff % 60000) / 1000);
+
+            document.getElementById(`d-${c.id}`).innerText = d.toString().padStart(2, '0');
+            document.getElementById(`h-${c.id}`).innerText = h.toString().padStart(2, '0');
+            document.getElementById(`m-${c.id}`).innerText = m.toString().padStart(2, '0');
+            document.getElementById(`s-${c.id}`).innerText = s.toString().padStart(2, '0');
+
+            if (diff < 0) {
+                status.innerText = "TIJD IS VERSTREKEN! 🎉";
+                status.style.color = "#00ff88";
+            } else {
+                status.innerText = "NOG EVEN GEDULD...";
+                status.style.color = "#666";
+            }
+        });
+    }
+
+    render();
+    setInterval(update, 1000);
+</script>
+</body>
+</html>
