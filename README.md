@@ -1,15 +1,11 @@
-# Final Countdown PRO v7 Stable Install
+# Final Countdown PRO v8 Social Calendar
 
-Dit is een schone stabiele versie zonder hard-reset overlay en zonder foutieve installatie-alert.
+Toegevoegd:
+- Confetti bij 0
+- WhatsApp PRO delen met 4 berichtstijlen
+- Thema's: Neon, Minimal dark, Fun kleurrijk
+- Kalender integratie via .ics download
+- Emoji categorieën
 
 Upload alles in de root van je GitHub repo `Test`.
-
-Test:
-- https://wjhdewinter.github.io/Test/manifest.json
-- https://wjhdewinter.github.io/Test/icons/icon-192.png
-- https://wjhdewinter.github.io/Test/sw.js
-
-Android:
-1. Open in Chrome.
-2. Wacht 10 seconden.
-3. Chrome-menu ⋮ → App installeren of Toevoegen aan startscherm.
+Let op: de map `icons` moet echt een map blijven.

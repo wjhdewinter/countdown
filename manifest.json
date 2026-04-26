@@ -1,7 +1,7 @@
 {
   "name": "Final Countdown PRO",
   "short_name": "Countdown",
-  "description": "Final Countdown PRO",
+  "description": "Fun countdown app met WhatsApp, thema's, confetti en kalender.",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
