@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Final Countdown PRO</title>
+  <link rel="manifest" href="./manifest.json">
+  <link rel="icon" href="./icons/icon-192.png" sizes="192x192" type="image/png">
+  <link rel="apple-touch-icon" href="./icons/icon-192.png">
+  <meta name="theme-color" content="#202020">
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <button id="menuBtn" class="icon-btn">☰</button>
+      <h1>Final Countdown</h1>
+      <button id="addBtn" class="icon-btn plus">+</button>
+    </header>
+
+    <section class="intro-card">
+      <strong>Countdowns</strong>
+      <span>Maak timers voor vakantie, deadlines, keuringen of leveringen.</span>
+      <button id="installBtn" class="install-btn" hidden>App installeren</button>
+      <small id="installStatus">Tip: Chrome-menu ⋮ → App installeren / Toevoegen aan startscherm.</small>
+    </section>
+
+    <main id="countdownList" class="list"></main>
+  </div>
+
+  <dialog id="countdownDialog">
+    <form method="dialog" id="countdownForm" class="dialog-card">
+      <h2 id="dialogTitle">Nieuwe countdown</h2>
+      <label>Naam <input id="titleInput" required maxlength="40" placeholder="vakantie"></label>
+      <label>Datum <input id="dateInput" type="date" required></label>
+      <label>Tijd <input id="timeInput" type="time" value="16:00" required></label>
+      <div class="dialog-actions">
+        <button type="button" class="ghost" id="cancelBtn">Annuleren</button>
+        <button class="primary">Opslaan</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="detailDialog" class="detail-dialog">
+    <section class="detail-page">
+      <header class="detail-topbar">
+        <button class="icon-btn" id="backDetailBtn">‹</button>
+        <h1>Final Countdown</h1>
+        <button class="icon-btn" id="detailEditBtn">✎</button>
+        <button class="icon-btn" id="detailShareBtn">↗</button>
+      </header>
+      <div class="detail-spacer"></div>
+      <article id="detailContent"></article>
+    </section>
+  </dialog>
+
+  <script src="./app.js"></script>
+</body>
+</html>
