@@ -4,14 +4,19 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Final Countdown PRO</title>
-  <link rel="manifest" href="manifest.json" />
-  <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png" />
-  <link rel="apple-touch-icon" href="icons/icon-192.png" />
+  <link rel="manifest" href="/Test/manifest.json" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/Test/icons/icon-192.png" />
+  <link rel="apple-touch-icon" sizes="192x192" href="/Test/icons/icon-192.png" />
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-title" content="Countdown" />
   <meta name="theme-color" content="#202020" />
-  <link rel="stylesheet" href="style.css" />
+  <meta name="application-name" content="Countdown" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="msapplication-TileColor" content="#202020" />
+  <meta name="msapplication-TileImage" content="/Test/icons/icon-192.png" />
+
+  <link rel="stylesheet" href="/Test/style.css?v=4" />
 </head>
 <body>
   <div class="app">
@@ -24,7 +29,7 @@
     <section class="intro-card">
       <strong>Countdowns</strong>
       <span>Maak timers voor vakantie, deadlines, keuringen of leveringen.</span>
-      <button id="installBtn" class="install-btn" hidden>App installeren</button>
+      <button id="installBtn" class="install-btn">App installeren</button>
     </section>
 
     <main id="countdownList" class="list"></main>
@@ -88,6 +93,6 @@
     </form>
   </dialog>
 
-  <script src="app.js"></script>
+  <script src="/Test/app.js?v=4"></script>
 </body>
 </html>

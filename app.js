@@ -204,7 +204,7 @@ setInterval(render, 1000);
 render();
 
 if("serviceWorker" in navigator){
-  navigator.serviceWorker.register("sw.js").catch(() => {});
+  navigator.serviceWorker.register("/Test/sw.js").catch(() => {});
 }
 
 
@@ -366,11 +366,11 @@ if(installBtn){
       deferredInstallPrompt = null;
       installBtn.hidden = true;
     } else {
-      alert("Installeren: open het browsermenu en kies 'Toevoegen aan startscherm' of 'App installeren'.");
+      alert("Android: tik op App installeren of kies in Chrome-menu Toevoegen aan startscherm.\niPhone: open in Safari, tik op delen en kies Zet op beginscherm.");
     }
   });
 }
 
 window.addEventListener("appinstalled", () => {
-  if(installBtn) installBtn.hidden = true;
+  if(installBtn && deferredInstallPrompt === null) installBtn.hidden = false;
 });

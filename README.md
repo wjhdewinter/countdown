@@ -1,72 +1,59 @@
-# Final Countdown PRO
+# Final Countdown PRO v4 — GitHub Pages Fixed
 
-Een mobiele webbased countdown-app in donkere stijl, geschikt voor GitHub Pages.
+Deze versie is speciaal gefixt voor:
 
-## Functies
+https://wjhdewinter.github.io/Test/
 
-- Meerdere countdowns toevoegen
-- Countdown bewerken en verwijderen
-- Dagen, uren, minuten en seconden
-- Automatisch opslaan in de browser
-- Mobielvriendelijke layout
-- Werkt als simpele PWA
-- Geschikt voor GitHub Pages
+## Wat is gefixt
 
-## Installatie op GitHub Pages
+- App-icoon werkt via `/Test/icons/...`
+- Manifest werkt via `/Test/manifest.json`
+- Service worker werkt via `/Test/sw.js`
+- Cache-busting toegevoegd aan CSS en JS
+- Oude cache wordt automatisch verwijderd
+- Blauwe detailknop is verwijderd
+- Installatieknop blijft zichtbaar
+- Android en iPhone ondersteuning toegevoegd
+- Maskable icons toegevoegd voor mooi Android app-icoon
 
-1. Maak een nieuwe repository aan op GitHub.
-2. Upload alle bestanden uit deze map.
-3. Ga naar **Settings > Pages**.
-4. Kies bij Source: **Deploy from a branch**.
-5. Kies branch **main** en map **root**.
-6. Klik op Save.
-7. Open daarna de GitHub Pages link.
+## Uploaden naar GitHub
 
-## Bestanden
+Upload de inhoud van deze ZIP direct in je repository `Test`.
 
-- `index.html` - de app
-- `style.css` - vormgeving
-- `app.js` - countdown logica
-- `manifest.json` - PWA instellingen
-- `sw.js` - offline cache
+De structuur moet zo zijn:
 
-## Aanpassen
+```text
+index.html
+style.css
+app.js
+manifest.json
+sw.js
+icons/
+  icon-192.png
+  icon-512.png
+  maskable-192.png
+  maskable-512.png
+README.md
+```
 
-De standaard countdowns kun je aanpassen in `app.js` bij `loadCountdowns()`.
+## Belangrijke testlinks
 
+Na uploaden moeten deze links werken:
 
-## Nieuw in v2
+- https://wjhdewinter.github.io/Test/manifest.json
+- https://wjhdewinter.github.io/Test/icons/icon-192.png
+- https://wjhdewinter.github.io/Test/icons/icon-512.png
 
-- Detailpagina per countdown
-- Grote timerweergave zoals in je voorbeeld
-- Extra berekeningen:
-  - jaren
-  - maanden
-  - weken
-  - dagen
-  - werkdagen
-  - uren
-  - minuten
-  - seconden
-  - milliseconden
-- Deelknop via mobiele share-sheet
+## Android installeren
 
+1. Verwijder eerst de oude app van je beginscherm.
+2. Open Chrome.
+3. Ga naar https://wjhdewinter.github.io/Test/
+4. Tik 2x op vernieuwen.
+5. Tik op **App installeren** of kies in Chrome-menu **Toevoegen aan startscherm**.
 
-## Nieuw in v3
+## iPhone installeren
 
-- Blauwe zwevende knop op de detailpagina verwijderd
-- App is installeerbaar als PWA
-- Mooi app-icoon toegevoegd
-- Installatieknop toegevoegd wanneer de browser dit ondersteunt
-
-## Installeren op telefoon
-
-### Android / Chrome
-1. Open de GitHub Pages link.
-2. Tik op **App installeren** als de knop verschijnt.
-3. Verschijnt de knop niet? Open het browsermenu en kies **Toevoegen aan startscherm**.
-
-### iPhone / Safari
-1. Open de GitHub Pages link in Safari.
+1. Open de site in Safari.
 2. Tik op delen.
 3. Kies **Zet op beginscherm**.
