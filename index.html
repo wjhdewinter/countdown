@@ -4,21 +4,27 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Final Countdown PRO</title>
-  <link rel="manifest" href="/Test/manifest.json" />
-  <link rel="icon" type="image/png" sizes="192x192" href="/Test/icons/icon-192.png" />
-  <link rel="apple-touch-icon" sizes="192x192" href="/Test/icons/icon-192.png" />
+
+  <link rel="manifest" href="./manifest.webmanifest?v=6" />
+  <link rel="icon" type="image/png" sizes="192x192" href="./icons/icon-192.png?v=6" />
+  <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png?v=6" />
+
+  <meta name="theme-color" content="#202020" />
+  <meta name="application-name" content="Countdown" />
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-title" content="Countdown" />
-  <meta name="theme-color" content="#202020" />
-  <meta name="application-name" content="Countdown" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="msapplication-TileColor" content="#202020" />
-  <meta name="msapplication-TileImage" content="/Test/icons/icon-192.png" />
 
-  <link rel="stylesheet" href="/Test/style.css?v=4" />
+  <link rel="stylesheet" href="./style.css?v=6" />
 </head>
 <body>
+  <div id="resetScreen" class="reset-screen" hidden>
+    <div>
+      <h1>Final Countdown</h1>
+      <p>Nieuwe versie laden...</p>
+    </div>
+  </div>
+
   <div class="app">
     <header class="topbar">
       <button class="icon-btn" id="menuBtn" aria-label="Menu">☰</button>
@@ -29,53 +35,22 @@
     <section class="intro-card">
       <strong>Countdowns</strong>
       <span>Maak timers voor vakantie, deadlines, keuringen of leveringen.</span>
-      <button id="installBtn" class="install-btn">App installeren</button>
+      <button id="installBtn" class="install-btn" hidden>App installeren</button>
+      <button id="installHelpBtn" class="install-btn secondary-install">Installatie hulp</button>
+      <small id="installStatus" class="install-status">Installatie wordt gecontroleerd...</small>
     </section>
 
     <main id="countdownList" class="list"></main>
-
-    <p class="empty" id="emptyState">
-      Nog geen countdowns. Tik op de plus om je eerste timer te maken.
-    </p>
+    <p class="empty" id="emptyState">Nog geen countdowns. Tik op de plus om je eerste timer te maken.</p>
   </div>
-
-  <dialog id="detailDialog" class="detail-dialog">
-    <section class="detail-page">
-      <header class="detail-topbar">
-        <button class="icon-btn" id="backDetailBtn" aria-label="Terug">‹</button>
-        <h1 id="detailHeaderTitle">Final Countd...</h1>
-        <button class="icon-btn" id="detailEditBtn" aria-label="Bewerken">✎</button>
-        <button class="icon-btn" id="detailPeopleBtn" aria-label="Delen met personen">☷</button>
-        <button class="icon-btn" id="detailShareBtn" aria-label="Delen">↗</button>
-      </header>
-
-      <div class="detail-spacer"></div>
-
-      <article id="detailContent"></article>
-    </section>
-  </dialog>
 
   <dialog id="countdownDialog">
     <form method="dialog" id="countdownForm" class="dialog-card">
       <h2 id="dialogTitle">Nieuwe countdown</h2>
-
-      <label>
-        Naam
-        <input id="titleInput" type="text" placeholder="Bijv. vakantie" required maxlength="40" />
-      </label>
-
-      <label>
-        Datum
-        <input id="dateInput" type="date" required />
-      </label>
-
-      <label>
-        Tijd
-        <input id="timeInput" type="time" value="16:00" required />
-      </label>
-
-      <label>
-        Categorie
+      <label>Naam <input id="titleInput" type="text" placeholder="Bijv. vakantie" required maxlength="40" /></label>
+      <label>Datum <input id="dateInput" type="date" required /></label>
+      <label>Tijd <input id="timeInput" type="time" value="16:00" required /></label>
+      <label>Categorie
         <select id="categoryInput">
           <option value="vakantie">Vakantie</option>
           <option value="verjaardag">Verjaardag</option>
@@ -85,7 +60,6 @@
           <option value="anders">Anders</option>
         </select>
       </label>
-
       <div class="dialog-actions">
         <button type="button" class="ghost" id="cancelBtn">Annuleren</button>
         <button type="submit" class="primary">Opslaan</button>
@@ -93,6 +67,34 @@
     </form>
   </dialog>
 
-  <script src="/Test/app.js?v=4"></script>
+  <dialog id="detailDialog" class="detail-dialog">
+    <section class="detail-page">
+      <header class="detail-topbar">
+        <button class="icon-btn" id="backDetailBtn" aria-label="Terug">‹</button>
+        <h1 id="detailHeaderTitle">Final Countdown</h1>
+        <button class="icon-btn" id="detailEditBtn" aria-label="Bewerken">✎</button>
+        <button class="icon-btn" id="detailPeopleBtn" aria-label="Personen">☷</button>
+        <button class="icon-btn" id="detailShareBtn" aria-label="Delen">↗</button>
+      </header>
+      <div class="detail-spacer"></div>
+      <article id="detailContent"></article>
+    </section>
+  </dialog>
+
+  <dialog id="helpDialog" class="ios-dialog">
+    <section class="ios-card">
+      <h2>Installeren op Android</h2>
+      <p>Gebruik bij voorkeur Chrome. Als de echte knop zichtbaar wordt, tik je op <strong>App installeren</strong>.</p>
+      <ol>
+        <li>Open Chrome-menu rechtsboven.</li>
+        <li>Kies <strong>App installeren</strong> of <strong>Toevoegen aan startscherm</strong>.</li>
+        <li>Zie je alleen een snelkoppeling? Wacht 30 seconden en vernieuw de pagina.</li>
+      </ol>
+      <p class="small">Status: <span id="debugText">laden...</span></p>
+      <button id="closeHelp" class="primary full">Begrepen</button>
+    </section>
+  </dialog>
+
+  <script src="./app.js?v=6"></script>
 </body>
 </html>

@@ -1,59 +1,32 @@
-# Final Countdown PRO v4 — GitHub Pages Fixed
+# Final Countdown PRO v6 — Hard Reset Debug Fix
 
-Deze versie is speciaal gefixt voor:
+Deze versie doet automatisch eenmalig:
+- oude service workers verwijderen
+- oude PWA caches verwijderen
+- pagina opnieuw laden met `?fresh=v6`
 
-https://wjhdewinter.github.io/Test/
+Daarna registreert hij een nieuwe service worker met scope `./`.
 
-## Wat is gefixt
+## Uploaden
 
-- App-icoon werkt via `/Test/icons/...`
-- Manifest werkt via `/Test/manifest.json`
-- Service worker werkt via `/Test/sw.js`
-- Cache-busting toegevoegd aan CSS en JS
-- Oude cache wordt automatisch verwijderd
-- Blauwe detailknop is verwijderd
-- Installatieknop blijft zichtbaar
-- Android en iPhone ondersteuning toegevoegd
-- Maskable icons toegevoegd voor mooi Android app-icoon
+Verwijder eerst alle oude bestanden uit je GitHub repo `Test`.
+Upload daarna deze bestanden in de root van de repo:
 
-## Uploaden naar GitHub
+- index.html
+- style.css
+- app.js
+- manifest.webmanifest
+- sw.js
+- icons map
 
-Upload de inhoud van deze ZIP direct in je repository `Test`.
+## Android Chrome
 
-De structuur moet zo zijn:
+Open:
+https://wjhdewinter.github.io/Test/?fresh=v6
 
-```text
-index.html
-style.css
-app.js
-manifest.json
-sw.js
-icons/
-  icon-192.png
-  icon-512.png
-  maskable-192.png
-  maskable-512.png
-README.md
-```
+Wacht 10-30 seconden. Chrome toont dan meestal:
+- knop App installeren
+- of menu > App installeren
 
-## Belangrijke testlinks
-
-Na uploaden moeten deze links werken:
-
-- https://wjhdewinter.github.io/Test/manifest.json
-- https://wjhdewinter.github.io/Test/icons/icon-192.png
-- https://wjhdewinter.github.io/Test/icons/icon-512.png
-
-## Android installeren
-
-1. Verwijder eerst de oude app van je beginscherm.
-2. Open Chrome.
-3. Ga naar https://wjhdewinter.github.io/Test/
-4. Tik 2x op vernieuwen.
-5. Tik op **App installeren** of kies in Chrome-menu **Toevoegen aan startscherm**.
-
-## iPhone installeren
-
-1. Open de site in Safari.
-2. Tik op delen.
-3. Kies **Zet op beginscherm**.
+Als Chrome nog geen knop toont, gebruik:
+Chrome-menu > Toevoegen aan startscherm.

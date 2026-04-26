@@ -1,32 +1,5 @@
-const CACHE_NAME = "final-countdown-pro-v4";
-const ASSETS = [
-  "/Test/",
-  "/Test/index.html",
-  "/Test/style.css?v=4",
-  "/Test/app.js?v=4",
-  "/Test/manifest.json",
-  "/Test/icons/icon-192.png",
-  "/Test/icons/icon-512.png",
-  "/Test/icons/maskable-192.png",
-  "/Test/icons/maskable-512.png"
-];
-
-self.addEventListener("install", event => {
-  self.skipWaiting();
-  event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(ASSETS)));
-});
-
-self.addEventListener("activate", event => {
-  event.waitUntil(
-    caches.keys().then(keys =>
-      Promise.all(keys.filter(key => key !== CACHE_NAME).map(key => caches.delete(key)))
-    ).then(() => self.clients.claim())
-  );
-});
-
-self.addEventListener("fetch", event => {
-  if(event.request.method !== "GET") return;
-  event.respondWith(
-    caches.match(event.request).then(response => response || fetch(event.request))
-  );
-});
+const CACHE_NAME="final-countdown-pro-v6";
+const ASSETS=["./","./index.html","./style.css?v=6","./app.js?v=6","./manifest.webmanifest?v=6","./icons/icon-192.png?v=6","./icons/icon-512.png?v=6","./icons/maskable-192.png?v=6","./icons/maskable-512.png?v=6"];
+self.addEventListener("install",e=>{self.skipWaiting();e.waitUntil(caches.open(CACHE_NAME).then(c=>c.addAll(ASSETS)))});
+self.addEventListener("activate",e=>{e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE_NAME).map(k=>caches.delete(k)))).then(()=>self.clients.claim()))});
+self.addEventListener("fetch",e=>{if(e.request.method!=="GET")return;e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request)))});
