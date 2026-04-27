@@ -1,26 +1,32 @@
-# Final Countdown Travel PRO — v10 Full
+# Reis Countdown v11
 
-Dit is de gecombineerde versie:
-- Alles uit v8: confetti, WhatsApp PRO, thema's, kalender, emoji-categorieën, detail stats, digitale countdown UI
-- Alles uit v10: locatie, hotel, weer, kaart, Google Maps, AI reisinfo met optionele OpenAI API key
+Complete PWA-versie voor GitHub Pages.
 
-Upload alle bestanden in de root van je GitHub repo `Test`.
-Let op: de map `icons` moet een echte map blijven.
+## Bestanden
+- `index.html`
+- `manifest.json`
+- `service-worker.js`
+- `icons/icon-192.png`
+- `icons/icon-512.png`
 
+## Uploaden naar GitHub Pages
+1. Pak de ZIP uit.
+2. Upload alle bestanden naar je GitHub repository.
+3. Zorg dat `index.html` in de hoofdmap staat.
+4. Ga naar Settings > Pages.
+5. Kies branch `main` en map `/root`.
+6. Open je GitHub Pages-link.
 
-## v10.1 fix
-- Iedere countdown heeft nu zichtbaar zijn eigen locatie en hotel.
-- Nieuwe opslag-key gebruikt zodat oude gedeelde/rommeldata niet wordt hergebruikt.
-- Locatie/hotel blijven per klok apart opgeslagen.
-
-
-## v10.2 AI uitgebreid
-AI reisassistent uitgebreid met aparte knoppen:
-- Reisgids
-- Planning
-- Eten
-- Paklijst
-- Hotel tips
-
-Zonder API key gebruikt de app uitgebreide vaste reisinfo.
-Met OpenAI API key maakt hij gepersonaliseerde AI-antwoorden.
+## Functies
+- Meerdere reizen
+- Countdown per bestemming
+- Hotel + reisinfo + tips
+- Achtergrondfoto per reis
+- WhatsApp delen
+- Google Maps knop
+- Google Calendar knop
+- Thema’s
+- Confetti bij 0
+- PWA manifest
+- Service worker
+- Installknop voor Android/Chrome
