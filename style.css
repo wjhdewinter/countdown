@@ -21,3 +21,196 @@
   max-height:420px;
   overflow:auto;
 }
+
+
+/* v10.4 Premium UI polish */
+:root{
+  --bg:#151515;
+  --panel:#2f2f2f;
+  --dark:#141414;
+  --line:#505050;
+  --red:#ff1010;
+  --muted:#d6d6d6;
+  --accent:#e21b24;
+  --card-glow:0 10px 28px rgba(0,0,0,.45);
+}
+
+body{
+  background:#050505 !important;
+  color:#ffffff !important;
+}
+
+.app{
+  background:linear-gradient(180deg,#2d2d2d 0%,#1b1b1b 55%,#101010 100%) !important;
+}
+
+.topbar{
+  background:linear-gradient(180deg,#242424,#181818) !important;
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+
+.intro-card,
+.card,
+.travel-box,
+.dialog-card{
+  background:linear-gradient(180deg,#333,#242424) !important;
+  border:1px solid rgba(255,255,255,.10) !important;
+  box-shadow:var(--card-glow) !important;
+}
+
+.intro-card{
+  border-radius:16px !important;
+}
+
+.card{
+  border-radius:14px !important;
+}
+
+.display{
+  background:linear-gradient(180deg,#181818,#101010) !important;
+  border:1px solid rgba(255,255,255,.12) !important;
+  border-radius:10px !important;
+}
+
+.card-head{
+  border-bottom:1px solid rgba(255,255,255,.12) !important;
+}
+
+.card-title{
+  color:#ffffff !important;
+  font-weight:700 !important;
+}
+
+.travel-mini{
+  color:#ededed !important;
+  background:#151515 !important;
+  border-bottom:1px solid rgba(255,255,255,.10) !important;
+}
+
+.label{
+  color:#ffffff !important;
+  opacity:.95;
+}
+
+.digits{
+  color:#ff1515 !important;
+  text-shadow:0 0 14px rgba(255,0,0,.45), 0 0 3px rgba(255,0,0,.65) !important;
+}
+
+.card-foot{
+  color:#eeeeee !important;
+  background:linear-gradient(180deg,#3a3a3a,#303030) !important;
+}
+
+.action-btn,
+.detail-btn,
+.pill,
+.primary{
+  box-shadow:0 6px 14px rgba(0,0,0,.35) !important;
+}
+
+.action-btn{
+  background:linear-gradient(180deg,#777,#555) !important;
+}
+
+.detail-page{
+  background:linear-gradient(180deg,#000 0%,#050505 45%,#161616 100%) !important;
+}
+
+.detail-count-card{
+  background:linear-gradient(180deg,#181818,#101010) !important;
+  border-top:1px solid rgba(255,255,255,.18) !important;
+  border-bottom:1px solid rgba(255,255,255,.18) !important;
+}
+
+.detail-date{
+  color:#ffffff !important;
+  text-shadow:0 2px 8px rgba(0,0,0,.45);
+}
+
+.stats{
+  color:#eeeeee !important;
+}
+
+.stat-label,
+.stat-value{
+  color:#eeeeee !important;
+}
+
+.stat-strip{
+  background:rgba(255,255,255,.04) !important;
+  border-radius:8px;
+}
+
+/* Travel / AI / Weather readability fix */
+.travel-box{
+  color:#ffffff !important;
+  border-radius:18px !important;
+  margin:14px 12px !important;
+  padding:16px !important;
+}
+
+.travel-box h3{
+  color:#ffffff !important;
+  font-size:24px !important;
+  margin-top:0 !important;
+}
+
+.travel-box p,
+.travel-box div,
+.travel-box span{
+  color:#f1f1f1 !important;
+}
+
+.weather-grid{
+  color:#ffffff !important;
+}
+
+.weather-day{
+  background:linear-gradient(180deg,#2a2a2a,#1d1d1d) !important;
+  color:#ffffff !important;
+  border:1px solid rgba(255,255,255,.10);
+  box-shadow:0 4px 12px rgba(0,0,0,.28);
+}
+
+.ai-box{
+  background:#111 !important;
+  color:#ffffff !important;
+  border:1px solid rgba(255,255,255,.12) !important;
+  border-radius:14px !important;
+  line-height:1.55 !important;
+}
+
+.map{
+  border:2px solid rgba(255,255,255,.14) !important;
+  box-shadow:0 8px 20px rgba(0,0,0,.45);
+}
+
+input,
+select,
+textarea{
+  background:#111 !important;
+  color:#ffffff !important;
+  border:1px solid rgba(255,255,255,.18) !important;
+}
+
+input::placeholder{
+  color:#aaa !important;
+}
+
+.muted,
+.intro-card span,
+.intro-card small{
+  color:#e0e0e0 !important;
+}
+
+.share-style{
+  background:linear-gradient(180deg,#4a4a4a,#333) !important;
+  border:1px solid rgba(255,255,255,.10);
+}
+
+@media(max-width:390px){
+  .travel-box h3{
+    font-size:21px !important;
+  }
+}

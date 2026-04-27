@@ -24,3 +24,10 @@ AI reisassistent uitgebreid met aparte knoppen:
 
 Zonder API key gebruikt de app uitgebreide vaste reisinfo.
 Met OpenAI API key maakt hij gepersonaliseerde AI-antwoorden.
+
+
+## v10.4 Premium UI
+- Donkere tekst op donkere achtergrond gefixt.
+- Travel, weer en AI blokken beter leesbaar.
+- Kaarten hebben meer contrast, glass/premium effect en betere spacing.
+- Klassieke counterstijl behouden.
